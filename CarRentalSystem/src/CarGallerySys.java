@@ -2,9 +2,13 @@ import java.util.ArrayList;
 
 public class CarGallerySys {
 
-	private static ArrayList<Car> carGal= new ArrayList<>();
+	private static ArrayList<CarGallery> carGal= new ArrayList<>();
 	
 	public static void addCarGallery(ArrayList<Car> cars, String address, int id, String title) {
-		CarGallery gal = new CarGallery
+		CarGallery gal = new CarGallery(cars, address, id, title);
+		
+		carGal.add(gal);
 	}
+	
+	
 }
