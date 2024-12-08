@@ -15,8 +15,8 @@ public class CarGallery {
         this.title = "";
     }
 
-    public CarGallery(ArrayList<Car> cars, String address, int id, String title) {
-        this.cars = cars;
+    public CarGallery(String address, int id, String title) {
+        this.cars = new ArrayList<>();
         this.address = address;
         this.id = id;
         this.title = title;
@@ -138,6 +138,41 @@ public class CarGallery {
         }
         return null; // Return null if no car is found with the given title
     }
+
+	public ArrayList<Car> getCars() {
+		return cars;
+	}
+
+	public void setCars(ArrayList<Car> cars) {
+		this.cars = cars;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+    
+    
+    
 	
 
    
