@@ -25,6 +25,10 @@ public class CarGallerySys {
 		return userMap.containsKey(id);
 	}
 	
+	public static String getPassword(int id) {
+		return userMap.get(id);
+	}
+	
 	public static CarGallery getCarGalleryById(int id) {
 		for (CarGallery carGallery : carGal) {
 			if(carGallery.getId() == id)

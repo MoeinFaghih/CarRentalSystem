@@ -13,14 +13,15 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class CreateUserFrame extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtId;
-	private JTextField txtPass;
 	private JTextField txtTitle;
 	private JTextField txtAddress;
+	private JPasswordField txtPass;
 
 	
 
@@ -53,11 +54,6 @@ public class CreateUserFrame extends JFrame {
 		txtId.setBounds(160, 88, 217, 29);
 		contentPane.add(txtId);
 		txtId.setColumns(10);
-		
-		txtPass = new JTextField();
-		txtPass.setColumns(10);
-		txtPass.setBounds(160, 142, 217, 29);
-		contentPane.add(txtPass);
 		
 		txtTitle = new JTextField();
 		txtTitle.setColumns(10);
@@ -121,6 +117,10 @@ public class CreateUserFrame extends JFrame {
 		});
 		btnBack.setBounds(10, 11, 45, 23);
 		contentPane.add(btnBack);
+		
+		txtPass = new JPasswordField();
+		txtPass.setBounds(160, 142, 217, 29);
+		contentPane.add(txtPass);
 	}
 
 }

@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Classes.CarGallery;
+import Classes.CarGallerySys;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -12,15 +16,18 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class IntroPage extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtId;
-	private JTextField txtPass;
 	
 	
 	CreateUserFrame createF = new CreateUserFrame(this);
+	GalleryFrame galF = new GalleryFrame(this);
+	private JPasswordField txtPass;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -40,11 +47,22 @@ public class IntroPage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
+	public void clean() {
+		txtId.setText("");
+		txtPass.setText("");
+	}
 	public IntroPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 581, 360);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		
+		JLabel lblResult = new JLabel("");
+		lblResult.setForeground(Color.RED);
+		lblResult.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblResult.setBounds(164, 212, 245, 51);
+		contentPane.add(lblResult);
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -55,29 +73,52 @@ public class IntroPage extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		txtId = new JTextField();
-		txtId.setBounds(246, 119, 163, 27);
+		txtId.setBounds(246, 85, 163, 27);
 		contentPane.add(txtId);
 		txtId.setColumns(10);
 		
-		txtPass = new JTextField();
-		txtPass.setColumns(10);
-		txtPass.setBounds(246, 157, 163, 27);
-		contentPane.add(txtPass);
-		
 		JLabel lblNewLabel_1 = new JLabel("User ID");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_1.setBounds(149, 121, 71, 21);
+		lblNewLabel_1.setBounds(149, 87, 71, 21);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Password");
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel_1_1.setBounds(149, 159, 71, 21);
+		lblNewLabel_1_1.setBounds(149, 121, 71, 21);
 		contentPane.add(lblNewLabel_1_1);
 		
 		JButton btnSignIn = new JButton("Sign in");
+		btnSignIn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int id = Integer.parseInt(txtId.getText());
+				CarGallery galleryObj = CarGallerySys.getCarGalleryById(id);
+				if(galleryObj == null) {  //meaning no such id is existent in the data.
+					lblResult.setText("The entered ID or Password is incorrect");
+					clean();
+				}
+				else {
+					String pass = CarGallerySys.getPassword(id);
+					if(!pass.equals(txtPass.getText()) ){		//Wrong Password
+						lblResult.setText("The entered ID or Password is incorrect");
+						clean();
+					}
+					
+					else {
+						GalleryFrame.setGalleryObj(galleryObj);
+						setVisible(false);
+						galF.setVisible(true);
+						galF.fillInfo();
+					}
+						
+					
+				}
+				
+				
+			}
+		});
 		btnSignIn.setBackground(new Color(173, 216, 230));
 		btnSignIn.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnSignIn.setBounds(197, 208, 174, 32);
+		btnSignIn.setBounds(192, 169, 174, 32);
 		contentPane.add(btnSignIn);
 		
 		JLabel lblNewLabel_2 = new JLabel("Not a User?");
@@ -96,5 +137,12 @@ public class IntroPage extends JFrame {
 		btnNewButton.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 12));
 		btnNewButton.setBounds(164, 284, 288, 23);
 		contentPane.add(btnNewButton);
+		
+		txtPass = new JPasswordField();
+		txtPass.setBounds(246, 119, 163, 27);
+		contentPane.add(txtPass);
+		
+		
+		
 	}
 }
