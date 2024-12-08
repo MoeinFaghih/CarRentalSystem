@@ -98,16 +98,7 @@ public abstract class Car implements CarInterface{
     
     
     @Override
-    public String toString() {
-        return "Car Details:\n" +
-                "Brand: " + brand + "\n" +
-                "Horse Power: " + horsePower + "\n" +
-                "Year: " + year + "\n" +
-                "Color: " + color + "\n" +
-                "Mileage: " + mileage + "\n" +
-                "License Plate: " + licensePlate + "\n" +
-                "Top Speed: " + topSpeed + "\n";
-    }
+    public abstract String toString();
 
 
 }

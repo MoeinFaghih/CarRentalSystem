@@ -43,7 +43,14 @@ public class ElectricCar extends Car{
 	}
 
 	public String toString() {
-	    return "ElectricCar Details\n" +super.toString()+
+	    return "ElectricCar Details\n" +
+                "Brand: " + brand + "\n" +
+                "Horse Power: " + horsePower + "\n" +
+                "Year: " + year + "\n" +
+                "Color: " + color + "\n" +
+                "Mileage: " + mileage + "\n" +
+                "License Plate: " + licensePlate + "\n" +
+                "Top Speed: " + topSpeed + "\n"+
 	           "  Battery Percentage: " + batteryPercentage + "%\n" +
 	           "  Miles Per Battery Unit: " + milePerBattery + " miles\n" +
 	           "  Supports Fast Charging: " + (fastCharge ? "Yes" : "No") + "\n" +

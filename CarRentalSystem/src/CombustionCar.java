@@ -42,7 +42,14 @@ public class CombustionCar extends Car  {
 
 
 	public String toString() {
-	    return "Combustion Car Details\n" +super.toString()+
+	    return "Combustion Car Details\n" +
+                "Brand: " + brand + "\n" +
+                "Horse Power: " + horsePower + "\n" +
+                "Year: " + year + "\n" +
+                "Color: " + color + "\n" +
+                "Mileage: " + mileage + "\n" +
+                "License Plate: " + licensePlate + "\n" +
+                "Top Speed: " + topSpeed + "\n"+
 	           "  Tank Capacity: " + tankCap + " liters\n" +
 	           "  Fuel in Tank: " + fuelInTank + " liters\n" +
 	           "  Fuel Type: " + fuelType + "\n" +
