@@ -108,6 +108,19 @@ public class CarGallery {
     	return false;
     }
     
+    public String displayCars()
+    {
+    	String output="";
+    	for(int i=0;i<cars.size();i++)
+    	{
+    		output+=cars.get(i).toString();
+    		output+="\n";
+    	}
+    	return output;
+    }
+    
+    
+    
     public Car removeCar(String licanseplate) {
         for (Car car : cars) {
             if (car.getLicensePlate().equalsIgnoreCase(licanseplate)) {
