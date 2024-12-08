@@ -5,4 +5,5 @@ public class deneme {
 	//Test2
 	//Test3
 	//Test5
+	//Test6
 }
