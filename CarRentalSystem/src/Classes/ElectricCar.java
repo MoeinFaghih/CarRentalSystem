@@ -1,3 +1,4 @@
+package Classes;
 public class ElectricCar extends Car{
     private double batteryPercentage; //current battery cap
     private double milePerBattery; // 100% = how much mile

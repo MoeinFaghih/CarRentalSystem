@@ -1,3 +1,4 @@
+package Classes;
 public class CombustionCar extends Car  {
 	private double tankCap;       // max fuel capacity
 	private double fuelInTank;    // current fuel in tank
