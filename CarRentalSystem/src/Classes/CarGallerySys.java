@@ -47,6 +47,23 @@ public class CarGallerySys {
 		return null;
 	}
 	
+	public static boolean deleteCarGallery(int id) {
+		CarGallery gal = getCarGalleryById(id);
+		if(gal==null)
+			return false;
+		else {
+			carGal.remove(gal);
+			return true;
+		}
+	}
+	
+	public static int calculateTotalCarCount() {
+		int count=0;
+		for (CarGallery carGallery : carGal) {
+			count += carGallery.getCars().size();
+		}
+		return count;
+	}
 	
 	
 	
