@@ -20,6 +20,15 @@ public class CarGallerySys {
 		}
 	}
 	
+	public static String display() {
+		String s="";
+		for (CarGallery carGallery : carGal) {
+			s += carGallery.toString();
+		}
+		
+		return s;
+	}
+	
 	
 	public static boolean isFound(Integer id) {
 		return userMap.containsKey(id);

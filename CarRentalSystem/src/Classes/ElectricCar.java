@@ -17,7 +17,6 @@ public class ElectricCar extends Car{
 		this.batteryChargeTime = batteryChargeTime;
 	}
 
-
 	public double getBatteryPercentage() {
 		return batteryPercentage;
 	}

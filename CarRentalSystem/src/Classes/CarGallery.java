@@ -98,11 +98,17 @@ public class CarGallery {
             System.out.println("Car added successfully!");
         } else {
             System.out.println("Invalid car type. No car added.");
-            return;
         }
     }
     
-    public boolean doesCarExists(String licanseplate) {
+    
+    
+    @Override
+	public String toString() {
+		return "CarGallery [address=" + address + ", id=" + id + ", title=" + title + "]";
+	}
+
+	public boolean doesCarExists(String licanseplate) {
     	for(int i=0;i<=cars.size();i++)
     		if(cars.get(i).getLicensePlate().equalsIgnoreCase(licanseplate))
     			return true;
