@@ -95,11 +95,22 @@ public abstract class Car implements CarInterface{
     }
 
     public abstract double calculateMilage(); //arabayi aldiktan hemen sonra ne kadar gider
+
+
+	@Override
+	public String toString() {
+		return "Brand: " + brand + "\n" +
+                "Horse Power: " + horsePower + "\n" +
+                "Year: " + year + "\n" +
+                "Color: " + color + "\n" +
+                "Mileage: " + mileage + "\n" +
+                "License Plate: " + licensePlate + "\n" +
+                "Top Speed: " + topSpeed ;
+	}
     
     
     
-    @Override
-    public abstract String toString();
+    
 
 
 }
