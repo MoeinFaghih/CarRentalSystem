@@ -182,6 +182,15 @@ public class CarGallery {
 		this.title = title;
 	}
     
+	public String[] getAllCarsPlate() {
+		String[] arr = new String[cars.size()];
+		int i =0;
+		for (Car car : cars) {
+			arr[i] = car.getLicensePlate();
+			i++;
+		}
+		return arr;
+	}
     
     
 	

@@ -18,7 +18,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import javax.swing.AbstractListModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.JComboBox;
 
 public class GalleryFrame extends JFrame {
 
@@ -27,6 +31,8 @@ public class GalleryFrame extends JFrame {
 	private JLabel lblId;
 	private JLabel lblTitle;
 	private JLabel lblAddress;
+	private JTextPane textArea;
+	private JComboBox comboBox;
 	
 
 	/**
@@ -56,46 +62,40 @@ public class GalleryFrame extends JFrame {
 		lblNewLabel.setBackground(new Color(158, 204, 241));
 		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel.setFont(new Font("Sitka Small", Font.BOLD, 15));
-		lblNewLabel.setBounds(10, 11, 720, 77);
+		lblNewLabel.setBounds(10, 11, 349, 20);
 		contentPane.add(lblNewLabel);
 		
 		lblId = new JLabel("ID:    ");
 		lblId.setBackground(Color.WHITE);
-		lblId.setFont(new Font("Sitka Small", Font.PLAIN, 14));
-		lblId.setBounds(43, 42, 128, 39);
+		lblId.setFont(new Font("Sitka Small", Font.BOLD, 14));
+		lblId.setBounds(43, 42, 104, 39);
 		contentPane.add(lblId);
 		
 		lblTitle = new JLabel("Title:   ");
-		lblTitle.setFont(new Font("Sitka Small", Font.PLAIN, 14));
+		lblTitle.setFont(new Font("Sitka Small", Font.BOLD, 14));
 		lblTitle.setBackground(Color.WHITE);
-		lblTitle.setBounds(139, 42, 171, 39);
+		lblTitle.setBounds(139, 42, 113, 39);
 		contentPane.add(lblTitle);
 		
 		lblAddress = new JLabel("Address:    ");
-		lblAddress.setFont(new Font("Sitka Small", Font.PLAIN, 14));
+		lblAddress.setFont(new Font("Sitka Small", Font.BOLD, 14));
 		lblAddress.setBackground(Color.WHITE);
-		lblAddress.setBounds(374, 42, 332, 39);
+		lblAddress.setBounds(250, 42, 332, 39);
 		contentPane.add(lblAddress);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(87, 200, 201, 240);
+		scrollPane.setBounds(34, 174, 349, 240);
 		contentPane.add(scrollPane);
 		
-		JList list = new JList();
-		scrollPane.setViewportView(list);
-		list.setForeground(new Color(0, 0, 0));
-		list.setBackground(new Color(206, 234, 187));
-		list.setFont(new Font("Tahoma", Font.BOLD, 13));
-		list.setModel(new AbstractListModel() {
-			String[] values = new String[] {"Item1", "Item2", "Item3"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		textArea = new JTextPane();
+		scrollPane.setViewportView(textArea);
+		
+		comboBox = new JComboBox();
+		comboBox.setBounds(555, 92, 156, 23);
+		contentPane.add(comboBox);
+
+		
+		
 		
 		
 	}
@@ -104,6 +104,10 @@ public class GalleryFrame extends JFrame {
 		lblId.setText("ID:   "+ galleryObj.getId());
 		lblTitle.setText("Title:  " + galleryObj.getTitle());
 		lblAddress.setText("Address:  " + galleryObj.getAddress());
+		textArea.setText(galleryObj.displayCars());
+		comboBox.setModel(new DefaultComboBoxModel<>(galleryObj.getAllCarsPlate()));
+
+		
 		
 	}
 
