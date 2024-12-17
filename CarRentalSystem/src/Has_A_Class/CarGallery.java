@@ -1,6 +1,10 @@
-package Classes;
+package Has_A_Class;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import Is_A_Classes.Car;
+import Is_A_Classes.CombustionCar;
+import Is_A_Classes.ElectricCar;
 
 public class CarGallery {
     private ArrayList<Car> cars;

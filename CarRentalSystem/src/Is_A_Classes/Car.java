@@ -1,4 +1,7 @@
-package Classes;
+package Is_A_Classes;
+
+import Interface.CarInterface;
+
 public abstract class Car implements CarInterface{
 
     protected static int numberOfCars = 0;

@@ -1,6 +1,8 @@
-package Classes;
+package MainAndSystemClass;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import Has_A_Class.CarGallery;
 
 public class CarGallerySys {
 

@@ -6,8 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Classes.CarGallery;
-import Classes.CarGallerySys;
+import Has_A_Class.CarGallery;
+import MainAndSystemClass.CarGallerySys;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -131,6 +131,7 @@ public class IntroPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				createF.setVisible(true);
 				setVisible(false);
+				createF.clean();
 			}
 		});
 		btnNewButton.setBackground(new Color(90, 165, 137));

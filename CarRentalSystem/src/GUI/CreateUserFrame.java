@@ -1,12 +1,14 @@
 package GUI;
-import Classes.*;
-
+import MainAndSystemClass.CarGallerySys;
 
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Is_A_Classes.*;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -14,6 +16,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import javax.swing.SwingConstants;
 
 public class CreateUserFrame extends JFrame {
 
@@ -82,8 +85,9 @@ public class CreateUserFrame extends JFrame {
 		contentPane.add(lblNewLabel_1_3);
 		
 		JLabel lblResult = new JLabel("");
+		lblResult.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblResult.setFont(new Font("Sitka Small", Font.PLAIN, 15));
-		lblResult.setBounds(40, 319, 350, 39);
+		lblResult.setBounds(40, 291, 350, 67);
 		contentPane.add(lblResult);
 		
 		
@@ -113,6 +117,7 @@ public class CreateUserFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				introF.setVisible(true);
+				introF.clean();
 			}
 		});
 		btnBack.setBounds(10, 11, 45, 23);
