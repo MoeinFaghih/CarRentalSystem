@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import Is_A_Classes.*;
 
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -62,6 +63,7 @@ public class CreateUserFrame extends JFrame {
 		txtTitle.setColumns(10);
 		txtTitle.setBounds(160, 198, 217, 29);
 		contentPane.add(txtTitle);
+		
 		
 		txtAddress = new JTextField();
 		txtAddress.setColumns(10);

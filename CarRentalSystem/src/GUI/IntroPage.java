@@ -27,6 +27,8 @@ public class IntroPage extends JFrame {
 	CreateUserFrame createF = new CreateUserFrame(this);
 	GalleryFrame galF = new GalleryFrame(this);
 	private JPasswordField txtPass;
+	private JLabel lblCalcRes;
+	private JLabel lblResult;
 	
 	/**
 	 * Launch the application.
@@ -54,11 +56,11 @@ public class IntroPage extends JFrame {
 	}
 	public IntroPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 581, 360);
+		setBounds(100, 100, 581, 464);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		
-		JLabel lblResult = new JLabel("");
+		lblResult = new JLabel("");
 		lblResult.setForeground(Color.RED);
 		lblResult.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblResult.setBounds(164, 212, 245, 51);
@@ -90,27 +92,29 @@ public class IntroPage extends JFrame {
 		JButton btnSignIn = new JButton("Sign in");
 		btnSignIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int id = Integer.parseInt(txtId.getText());
-				CarGallery galleryObj = CarGallerySys.getCarGalleryById(id);
-				if(galleryObj == null) {  //meaning no such id is existent in the data.
-					lblResult.setText("The entered ID or Password is incorrect");
-					clean();
-				}
+				if(txtId.getText().equals("") || txtPass.getText().equals(""))
+					lblResult.setText("All fields must be filled!");
 				else {
-					String pass = CarGallerySys.getPassword(id);
-					if(!pass.equals(txtPass.getText()) ){		//Wrong Password
+					int id = Integer.parseInt(txtId.getText());
+					CarGallery galleryObj = CarGallerySys.getCarGalleryById(id);
+					if(galleryObj == null) {  //meaning no such id is existent in the data.
 						lblResult.setText("The entered ID or Password is incorrect");
 						clean();
 					}
-					
 					else {
-						GalleryFrame.setGalleryObj(galleryObj);
-						setVisible(false);
-						galF.setVisible(true);
-						galF.fillInfo();
-					}
+						String pass = CarGallerySys.getPassword(id);
+						if(!pass.equals(txtPass.getText()) ){		//Wrong Password
+							lblResult.setText("The entered ID or Password is incorrect");
+							clean();
+						}
 						
-					
+						else {
+							GalleryFrame.setGalleryObj(galleryObj);
+							setVisible(false);
+							galF.setVisible(true);
+							galF.fillInfo();
+						}
+					}
 				}
 				
 				
@@ -142,6 +146,27 @@ public class IntroPage extends JFrame {
 		txtPass = new JPasswordField();
 		txtPass.setBounds(246, 119, 163, 27);
 		contentPane.add(txtPass);
+		
+		JLabel lblNewLabel_3 = new JLabel("Want to see howmany cars in total we currently have in the system?");
+		lblNewLabel_3.setFont(new Font("Yu Gothic", Font.PLAIN, 13));
+		lblNewLabel_3.setBounds(29, 356, 423, 32);
+		contentPane.add(lblNewLabel_3);
+		
+		JButton btnCalc = new JButton("Click Here!");
+		btnCalc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lblCalcRes.setText("Across all of the galleries registered in the system, we have a total of " + CarGallerySys.calculateTotalCarCount() + " cars!");
+			}
+		});
+		btnCalc.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnCalc.setBackground(new Color(173, 216, 230));
+		btnCalc.setBounds(447, 355, 97, 27);
+		contentPane.add(btnCalc);
+		
+		lblCalcRes = new JLabel("");
+		lblCalcRes.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblCalcRes.setBounds(80, 385, 447, 40);
+		contentPane.add(lblCalcRes);
 		
 		
 		
