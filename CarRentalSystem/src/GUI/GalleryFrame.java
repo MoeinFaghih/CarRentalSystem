@@ -181,7 +181,7 @@ public class GalleryFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				textArea.setText(CarGallerySys.display(galleryObj.getId()));
 			}
-		});
+		}); 
 		btnNewButton_2.setBounds(545, 370, 150, 23);
 		contentPane.add(btnNewButton_2);
 		
