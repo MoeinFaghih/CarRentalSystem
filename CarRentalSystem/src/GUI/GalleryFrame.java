@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Has_A_Class.CarGallery;
+import Is_A_Classes.Car;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -28,7 +29,7 @@ import javax.swing.JComboBox;
 public class GalleryFrame extends JFrame {
 
 	private JPanel contentPane;
-	private static CarGallery galleryObj;  // the object coming from the IntroFrame, its information going to be displayed and altered
+	private CarGallery galleryObj;  // the object coming from the IntroFrame, its information going to be displayed and altered
 	private JLabel lblId;
 	private JLabel lblTitle;
 	private JLabel lblAddress;
@@ -44,7 +45,7 @@ public class GalleryFrame extends JFrame {
 	
 	
 	
-	public static CarGallery getGalleryObj() {
+	public CarGallery getGalleryObj() {
 		return galleryObj;
 	}
 
@@ -108,7 +109,15 @@ public class GalleryFrame extends JFrame {
 		contentPane.add(comboBox);
 		
 		JButton btnNewButton_1 = new JButton("Calculate the mıleage the can can go");
-		btnNewButton_1.setBounds(521, 192, 209, 39);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String plate = comboBox.getSelectedItem().toString();
+				Car carObject = galleryObj.findCar(plate);
+				textArea.setText("The " + carObject.getBrand() + " car with the license plate: " + carObject.getLicensePlate() + " can go "
+						+ carObject.calculateMilage()+ " miles with the current charge/fuel");
+			}
+		});
+		btnNewButton_1.setBounds(488, 192, 242, 39);
 		contentPane.add(btnNewButton_1);
 		
 		JLabel lblMıleRes = new JLabel("");
@@ -116,6 +125,11 @@ public class GalleryFrame extends JFrame {
 		contentPane.add(lblMıleRes);
 		
 		displayAllCarBtn = new JButton("Display All Cars");
+		displayAllCarBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textArea.setText(galleryObj.displayCars());
+			}
+		});
 		displayAllCarBtn.setBounds(33, 448, 156, 40);
 		contentPane.add(displayAllCarBtn);
 		
@@ -124,6 +138,8 @@ public class GalleryFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				addF.setVisible(true);
 				setVisible(false);
+				addF.setGalleryObj(galleryObj);
+				addF.fillInfo();
 			}
 		});
 		addButton.setBounds(521, 293, 211, 23);
@@ -132,6 +148,18 @@ public class GalleryFrame extends JFrame {
 		deleteBtn = new JButton("Delete selected Car");
 		deleteBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				if(comboBox.getSelectedItem()==null)
+					textArea.setText("A car plate must be selected from the combo box!\nThe list is currently Empty!");
+				else {
+					String plate = comboBox.getSelectedItem().toString();
+					Car carObj = galleryObj.removeCar(plate);
+					if(carObj!=null)
+						textArea.setText("The intended car was deleted from the list.");
+					else
+						textArea.setText("There was a problem in removing the intended car!!");
+					fillInfo();
+				}
 			}
 		});
 		deleteBtn.setBounds(250, 448, 156, 40);
@@ -147,15 +175,16 @@ public class GalleryFrame extends JFrame {
 		lblId.setText("ID:   "+ galleryObj.getId());
 		lblTitle.setText("Title:  " + galleryObj.getTitle());
 		lblAddress.setText("Address:  " + galleryObj.getAddress());
-		textArea.setText(galleryObj.displayCars());
 		comboBox.setModel(new DefaultComboBoxModel<>(galleryObj.getAllCarsPlate()));
-
-		
-		
+		System.out.println("invoked");	
+	}
+	
+	public void clear() {
+		textArea.setText("");
 	}
 
 
-	public static void setGalleryObj(CarGallery galleryObj) {
-		GalleryFrame.galleryObj = galleryObj;
+	public void setGalleryObj(CarGallery galleryObj) {
+		this.galleryObj = galleryObj;
 	}
 }

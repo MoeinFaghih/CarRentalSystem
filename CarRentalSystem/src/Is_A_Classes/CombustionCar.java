@@ -48,7 +48,7 @@ public class CombustionCar extends Car  {
 	           "  Tank Capacity: " + tankCap + " liters\n" +
 	           "  Fuel in Tank: " + fuelInTank + " liters\n" +
 	           "  Fuel Type: " + fuelType + "\n" +
-	           "  Miles Per Tank: " + milePerTank + " miles\n";
+	           "  Miles Per Tank: " + milePerTank + " miles\n\n\n";
 	}
 
 
@@ -62,12 +62,7 @@ public class CombustionCar extends Car  {
 	}
 	
 	public double calculateMilage() {
-		if(fuelType.equalsIgnoreCase("Diesel"))
-			return (tankCap-fuelInTank)*22.22;
-		if(fuelType.equalsIgnoreCase("Gasoline"))
-			return (tankCap-fuelInTank)*14.7;
-		else
-			return 0;
+			return fuelInTank * milePerTank / tankCap;
 	}
 
 }

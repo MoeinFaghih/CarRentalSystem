@@ -12,7 +12,7 @@ public class CarGallery {
     private int id;
     private String title;
 
-    //Default bir şey vermedim
+    
     public CarGallery() {
         this.cars = new ArrayList<>();
         this.address = "";
@@ -26,83 +26,20 @@ public class CarGallery {
         this.id = id;
         this.title = title;
     }
-    public void addCar() {
-        Scanner scanner = new Scanner(System.in);
-        
-        System.out.print("Enter the licanse plate: ");
-        String licansePlate=scanner.nextLine();
-        while(doesCarExists(licansePlate))
-        {
-        	System.out.println("Already exists");
-        	System.out.print("Enter the licanse plate: ");
-            licansePlate=scanner.nextLine();
+    public boolean addCar(String type, String brand, double horsePower, int year, String color, double mileage, 
+    		String licensePlate, double topSpeed,double batteryPercentage, double milePerBattery, boolean fastCharge,
+    		double batteryChargeTime, double tankCap, double fuelInTank, String fuelType, double milePerTank) {
+        Car carObj = findCar(licensePlate);
+        if(carObj==null) {
+        	if(type.equalsIgnoreCase("electric")) {
+            	carObj = new ElectricCar(brand, horsePower, year, color, mileage, licensePlate, topSpeed, batteryPercentage, milePerBattery, fastCharge, batteryChargeTime);
+            }else {
+            	carObj = new CombustionCar(brand, horsePower, year, color, mileage, licensePlate, topSpeed, tankCap, fuelInTank, fuelType, milePerTank);
+            }
+            cars.add(carObj);
+            return true;
         }
-
-        System.out.print("Enter car type (electric/combustion): ");
-        String type = scanner.nextLine().toLowerCase();
-        while(!(type.equalsIgnoreCase("combustion")) || !(type.equalsIgnoreCase("electric")))
-        {
-        	System.out.print("Enter car type (electric/combustion): ");
-            type = scanner.nextLine().toLowerCase();
-        }
-        
-        System.out.print("Enter brand: ");
-        String brand = scanner.nextLine();
-
-        System.out.print("Enter horsepower: ");
-        int horsepower = Integer.parseInt(scanner.nextLine());
-
-        System.out.print("Enter year: ");
-        int year = Integer.parseInt(scanner.nextLine());
-
-        System.out.print("Enter color: ");
-        scanner.nextLine();
-        String color = scanner.nextLine();
-
-        System.out.print("Enter mileage: ");
-        double mileage = Double.parseDouble(scanner.nextLine());
-        
-        System.out.print("Enter the car's top speed (in km/h): ");
-        double topSpeed = Double.parseDouble(scanner.nextLine());
-
-        ElectricCar eCar=null;
-        CombustionCar cCar=null;
-
-        if (type.equals("electric")) {
-        	System.out.print("Enter current battery percentage: ");
-        	double batteryPercentage = Double.parseDouble(scanner.nextLine());
-
-        	System.out.print("Enter miles per 100% battery: ");
-        	double milePerBattery = Double.parseDouble(scanner.nextLine());
-
-        	System.out.print("Does the car support fast charging? (true/false): ");
-        	boolean fastCharge = Boolean.parseBoolean(scanner.nextLine());
-
-        	System.out.print("Enter battery charge time to 100% (in hours): ");
-        	double batteryChargeTime = Double.parseDouble(scanner.nextLine());
-
-            eCar = new ElectricCar(brand, horsepower, year, color, mileage, licansePlate, topSpeed, batteryPercentage, milePerBattery, fastCharge, batteryChargeTime);
-            cars.add(eCar);
-            System.out.println("Car added successfully!");
-        } else if (type.equals("combustion")) {
-        	System.out.print("Enter maximum fuel capacity (in liters): ");
-        	double tankCap = Double.parseDouble(scanner.nextLine());
-
-        	System.out.print("Enter current fuel in tank (in liters): ");
-        	double fuelInTank = Double.parseDouble(scanner.nextLine());
-
-        	System.out.print("Enter type of fuel (e.g., Gasoline, Diesel): ");
-        	String fuelType = scanner.nextLine();
-
-        	System.out.print("Enter miles per full tank: ");
-        	double milePerTank = Double.parseDouble(scanner.nextLine());
-
-            cCar = new CombustionCar(brand, horsepower, year, color, mileage, licansePlate, topSpeed, tankCap, fuelInTank, fuelType, milePerTank);
-            cars.add(cCar);
-            System.out.println("Car added successfully!");
-        } else {
-            System.out.println("Invalid car type. No car added.");
-        }
+        return false;
     }
     
     

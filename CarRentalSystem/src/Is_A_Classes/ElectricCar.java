@@ -48,7 +48,7 @@ public class ElectricCar extends Car{
 	           "  Battery Percentage: " + batteryPercentage + "%\n" +
 	           "  Miles Per Battery Unit: " + milePerBattery + " miles\n" +
 	           "  Supports Fast Charging: " + (fastCharge ? "Yes" : "No") + "\n" +
-	           "  Battery Charge Time: " + batteryChargeTime + " hours to be fully charged\n";
+	           "  Battery Charge Time: " + batteryChargeTime + " hours to be fully charged\n\n\n";
 	}
 	
 	public double costToFill() {
@@ -57,9 +57,7 @@ public class ElectricCar extends Car{
 
 	
 	public double calculateMilage() {
-		// TODO Auto-generated method stub
-		//1% = 5 mile
-		return batteryPercentage*5;
+		return batteryPercentage*milePerBattery/100;
 	}
 	
 	

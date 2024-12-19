@@ -109,10 +109,11 @@ public class IntroPage extends JFrame {
 						}
 						
 						else {
-							GalleryFrame.setGalleryObj(galleryObj);
+							galF.setGalleryObj(galleryObj);
 							galF.fillInfo();
 							setVisible(false);
 							galF.setVisible(true);
+							galF.clear();
 							
 						}
 					}

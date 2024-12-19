@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Has_A_Class.CarGallery;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -16,10 +19,12 @@ import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.Font;
 
 public class AddFrame extends JFrame {
 
 	private JPanel contentPane;
+	private CarGallery galleryObj;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTextField txtBrand;
 	private JTextField txtHorse;
@@ -37,6 +42,8 @@ public class AddFrame extends JFrame {
 	private JTextField txtBatteryChargeTime;
 	private JCheckBox chckbxFastCharge;
 	private JLabel lblNewLabel_15;
+	private JLabel lblInfo;
+	private JLabel lblRes;
 
 	
 
@@ -59,6 +66,8 @@ public class AddFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				galleryF.setVisible(true);
 				dispose();
+				galleryF.fillInfo();
+				System.out.println("invoked here");
 				
 			}
 		});
@@ -66,7 +75,7 @@ public class AddFrame extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JLabel lblNewLabel = new JLabel("Type");
-		lblNewLabel.setBounds(32, 15, 46, 14);
+		lblNewLabel.setBounds(21, 48, 46, 14);
 		contentPane.add(lblNewLabel);
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("Combustion");
@@ -86,7 +95,7 @@ public class AddFrame extends JFrame {
 			}
 		});
 		buttonGroup.add(rdbtnNewRadioButton);
-		rdbtnNewRadioButton.setBounds(108, 11, 109, 23);
+		rdbtnNewRadioButton.setBounds(94, 44, 109, 23);
 		contentPane.add(rdbtnNewRadioButton);
 		
 		JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Electric");
@@ -107,11 +116,11 @@ public class AddFrame extends JFrame {
 			}
 		});
 		buttonGroup.add(rdbtnNewRadioButton_1);
-		rdbtnNewRadioButton_1.setBounds(217, 11, 109, 23);
+		rdbtnNewRadioButton_1.setBounds(205, 44, 109, 23);
 		contentPane.add(rdbtnNewRadioButton_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("Brand:");
-		lblNewLabel_1.setBounds(32, 73, 46, 14);
+		lblNewLabel_1.setBounds(21, 73, 46, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		txtBrand = new JTextField();
@@ -124,7 +133,7 @@ public class AddFrame extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		txtHorse = new JTextField();
-		txtHorse.setBounds(329, 70, 86, 20);
+		txtHorse.setBounds(327, 70, 120, 20);
 		contentPane.add(txtHorse);
 		txtHorse.setColumns(10);
 		
@@ -133,7 +142,7 @@ public class AddFrame extends JFrame {
 		contentPane.add(lblNewLabel_3);
 		
 		txtYear = new JTextField();
-		txtYear.setBounds(83, 106, 86, 20);
+		txtYear.setBounds(83, 106, 120, 20);
 		contentPane.add(txtYear);
 		txtYear.setColumns(10);
 		
@@ -143,7 +152,7 @@ public class AddFrame extends JFrame {
 		
 		txtColor = new JTextField();
 		txtColor.setColumns(10);
-		txtColor.setBounds(326, 106, 89, 20);
+		txtColor.setBounds(326, 106, 121, 20);
 		contentPane.add(txtColor);
 		
 		JLabel lblNewLabel_3_1 = new JLabel("Mileage");
@@ -152,16 +161,16 @@ public class AddFrame extends JFrame {
 		
 		txtMile = new JTextField();
 		txtMile.setColumns(10);
-		txtMile.setBounds(83, 143, 86, 20);
+		txtMile.setBounds(83, 143, 120, 20);
 		contentPane.add(txtMile);
 		
 		JLabel lblNewLabel_5 = new JLabel("Licanse Plate");
-		lblNewLabel_5.setBounds(215, 146, 72, 14);
+		lblNewLabel_5.setBounds(232, 146, 72, 14);
 		contentPane.add(lblNewLabel_5);
 		
 		txtPlate = new JTextField();
 		txtPlate.setColumns(10);
-		txtPlate.setBounds(291, 143, 120, 20);
+		txtPlate.setBounds(327, 143, 120, 20);
 		contentPane.add(txtPlate);
 		
 		JLabel lblNewLabel_3_2 = new JLabel("Top Speed");
@@ -176,10 +185,11 @@ public class AddFrame extends JFrame {
 				{
 					galleryF.setVisible(true);
 					dispose();
+					
 				}
 			}
 		});
-		txtSpeed.setBounds(99, 186, 86, 20);
+		txtSpeed.setBounds(99, 186, 104, 20);
 		contentPane.add(txtSpeed);
 		txtSpeed.setColumns(10);
 		
@@ -232,7 +242,7 @@ public class AddFrame extends JFrame {
 		contentPane.add(lblNewLabel_11);
 		
 		txtBatteryPercentage = new JTextField();
-		txtBatteryPercentage.setBounds(336, 271, 86, 20);
+		txtBatteryPercentage.setBounds(329, 271, 93, 20);
 		contentPane.add(txtBatteryPercentage);
 		txtBatteryPercentage.setColumns(10);
 		
@@ -241,7 +251,7 @@ public class AddFrame extends JFrame {
 		contentPane.add(lblNewLabel_12);
 		
 		txtMilePerBattery = new JTextField();
-		txtMilePerBattery.setBounds(329, 308, 86, 20);
+		txtMilePerBattery.setBounds(329, 308, 93, 20);
 		contentPane.add(txtMilePerBattery);
 		txtMilePerBattery.setColumns(10);
 		
@@ -265,6 +275,30 @@ public class AddFrame extends JFrame {
 		JButton btnNewButton_1 = new JButton("Add");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				boolean res;
+				if(rdbtnNewRadioButton.isSelected())
+					res = galleryObj.addCar("Combustion", txtBrand.getText(), Double.parseDouble(txtHorse.getText()), 
+							Integer.parseInt(txtYear.getText()), txtColor.getText(), Double.parseDouble(txtMile.getText()), txtPlate.getText(), 
+							Double.parseDouble(txtSpeed.getText()), 0.0, 0.0, false, 
+							0.0, Double.parseDouble(txtTankCapacity.getText()), Double.parseDouble(txtFuelTank.getText()), 
+							txtFuelType.getText(), Double.parseDouble(txtMilesPerTank.getText()));
+				else 
+					res = galleryObj.addCar("Electric", txtBrand.getText(), Double.parseDouble(txtHorse.getText()), 
+							Integer.parseInt(txtYear.getText()), txtColor.getText(), Double.parseDouble(txtMile.getText()), txtPlate.getText(), 
+							Double.parseDouble(txtSpeed.getText()), Double.parseDouble(txtBatteryPercentage.getText()), Double.parseDouble(txtMilePerBattery.getText()), 
+							chckbxFastCharge.isSelected(), Double.parseDouble(txtBatteryChargeTime.getText()), 0.0, 0.0, 
+							"", 0.0 );
+				
+				if(res) {
+					lblRes.setText("The car was added successfuly!");
+					clear();
+				}
+				else
+					lblRes.setText("The entered lisence plate already exists!");
+					
+				
+				
+					
 			}
 		});
 		btnNewButton_1.setBounds(303, 449, 144, 31);
@@ -273,5 +307,46 @@ public class AddFrame extends JFrame {
 		lblNewLabel_15 = new JLabel("");
 		lblNewLabel_15.setBounds(21, 449, 95, 31);
 		contentPane.add(lblNewLabel_15);
+		
+		lblInfo = new JLabel("");
+		lblInfo.setFont(new Font("Yu Gothic UI Light", Font.BOLD | Font.ITALIC, 16));
+		lblInfo.setBounds(77, 0, 273, 47);
+		contentPane.add(lblInfo);
+		
+		lblRes = new JLabel("");
+		lblRes.setBounds(21, 425, 244, 67);
+		contentPane.add(lblRes);
 	}
+	
+	public void setGalleryObj(CarGallery galleryObj) {
+		this.galleryObj = galleryObj;
+	}
+	
+	public void fillInfo() {
+		lblInfo.setText(galleryObj.getTitle() + " Car Gallery");
+	}
+	
+	public void clear() {
+	txtBatteryChargeTime.setText("");
+	txtBatteryPercentage.setText("");
+	txtBrand.setText("");
+	txtColor.setText("");
+	txtFuelTank.setText("");
+	txtFuelType.setText("");
+	txtHorse.setText("");
+	txtMile.setText("");
+	txtMilePerBattery.setText("");
+	txtMilesPerTank.setText("");
+	txtPlate.setText("");
+	txtSpeed.setText("");
+	txtTankCapacity.setText("");
+	txtYear.setText("");
+	}
+	
+	public void cleanResult() {
+		lblRes.setText("");
+	}
+	
+	
+	
 }
