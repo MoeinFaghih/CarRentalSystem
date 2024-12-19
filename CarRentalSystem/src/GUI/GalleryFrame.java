@@ -18,6 +18,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import javax.swing.AbstractListModel;
+import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JScrollPane;
@@ -33,7 +34,19 @@ public class GalleryFrame extends JFrame {
 	private JLabel lblAddress;
 	private JTextPane textArea;
 	private JComboBox comboBox;
+	private JButton displayAllCarBtn;
+	private JButton addButton;
+	private JButton deleteBtn;
 	
+	
+	AddFrame addF = new AddFrame(this);
+	
+	
+	
+	
+	public static CarGallery getGalleryObj() {
+		return galleryObj;
+	}
 
 	/**
 	 * Create the frame.
@@ -84,15 +97,45 @@ public class GalleryFrame extends JFrame {
 		contentPane.add(lblAddress);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(34, 174, 349, 240);
+		scrollPane.setBounds(23, 107, 419, 330);
 		contentPane.add(scrollPane);
 		
 		textArea = new JTextPane();
 		scrollPane.setViewportView(textArea);
 		
 		comboBox = new JComboBox();
-		comboBox.setBounds(555, 92, 156, 23);
+		comboBox.setBounds(574, 92, 156, 23);
 		contentPane.add(comboBox);
+		
+		JButton btnNewButton_1 = new JButton("Calculate the mıleage the can can go");
+		btnNewButton_1.setBounds(521, 192, 209, 39);
+		contentPane.add(btnNewButton_1);
+		
+		JLabel lblMıleRes = new JLabel("");
+		lblMıleRes.setBounds(504, 121, 226, 61);
+		contentPane.add(lblMıleRes);
+		
+		displayAllCarBtn = new JButton("Display All Cars");
+		displayAllCarBtn.setBounds(33, 448, 156, 40);
+		contentPane.add(displayAllCarBtn);
+		
+		addButton = new JButton("Add New Car");
+		addButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addF.setVisible(true);
+				setVisible(false);
+			}
+		});
+		addButton.setBounds(521, 293, 211, 23);
+		contentPane.add(addButton);
+		
+		deleteBtn = new JButton("Delete selected Car");
+		deleteBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		deleteBtn.setBounds(250, 448, 156, 40);
+		contentPane.add(deleteBtn);
 
 		
 		
