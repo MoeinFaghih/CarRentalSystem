@@ -22,10 +22,11 @@ public class CarGallerySys {
 		}
 	}
 	
-	public static String display() {
+	public static String display(int id) {
 		String s="";
 		for (CarGallery carGallery : carGal) {
-			s += carGallery.toString();
+			if(carGallery.getId()==id)
+				s += carGallery.toString();
 		}
 		
 		return s;
@@ -55,6 +56,7 @@ public class CarGallerySys {
 			return false;
 		else {
 			carGal.remove(gal);
+			userMap.remove(id);
 			return true;
 		}
 	}

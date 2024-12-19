@@ -8,6 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import Has_A_Class.CarGallery;
 import Is_A_Classes.Car;
+import MainAndSystemClass.CarGallerySys;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -41,6 +42,7 @@ public class GalleryFrame extends JFrame {
 	
 	
 	AddFrame addF = new AddFrame(this);
+	private JButton btnNewButton_3;
 	
 	
 	
@@ -105,6 +107,15 @@ public class GalleryFrame extends JFrame {
 		scrollPane.setViewportView(textArea);
 		
 		comboBox = new JComboBox();
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Car wantedCar = galleryObj.findCar((String)comboBox.getSelectedItem());
+				if(wantedCar!=null)
+				{
+					textArea.setText(wantedCar.toString());
+				}
+			}
+		});
 		comboBox.setBounds(574, 92, 156, 23);
 		contentPane.add(comboBox);
 		
@@ -164,6 +175,27 @@ public class GalleryFrame extends JFrame {
 		});
 		deleteBtn.setBounds(250, 448, 156, 40);
 		contentPane.add(deleteBtn);
+		
+		JButton btnNewButton_2 = new JButton("Display Gallery");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textArea.setText(CarGallerySys.display(galleryObj.getId()));
+			}
+		});
+		btnNewButton_2.setBounds(545, 370, 150, 23);
+		contentPane.add(btnNewButton_2);
+		
+		btnNewButton_3 = new JButton("Delete Gallery");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				CarGallerySys.deleteCarGallery(galleryObj.getId());
+				intF.clean();		//clean the previously entered user/pass
+				intF.setVisible(true);
+			}
+		});
+		btnNewButton_3.setBounds(546, 432, 124, 23);
+		contentPane.add(btnNewButton_3);
 
 		
 		

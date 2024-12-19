@@ -18,6 +18,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import javax.swing.SwingConstants;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class CreateUserFrame extends JFrame {
 
@@ -64,8 +66,31 @@ public class CreateUserFrame extends JFrame {
 		txtTitle.setBounds(160, 198, 217, 29);
 		contentPane.add(txtTitle);
 		
+		JLabel lblResult = new JLabel("");
+		lblResult.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblResult.setFont(new Font("Sitka Small", Font.PLAIN, 15));
+		lblResult.setBounds(40, 291, 350, 67);
+		contentPane.add(lblResult);
 		
 		txtAddress = new JTextField();
+		txtAddress.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER)
+				{
+					boolean result = CarGallerySys.addCarGallery(txtAddress.getText(),  Integer.parseInt(txtId.getText()), txtTitle.getText(), txtPass.getText());
+					
+					if(result) {
+						dispose();
+						introF.setVisible(true);
+					}
+					else {
+						lblResult.setText("Car Gallery ID already exists. Creation Unseccesful");
+						
+					}
+				}
+			}
+		});
 		txtAddress.setColumns(10);
 		txtAddress.setBounds(160, 251, 217, 29);
 		contentPane.add(txtAddress);
@@ -86,11 +111,7 @@ public class CreateUserFrame extends JFrame {
 		lblNewLabel_1_3.setBounds(40, 251, 96, 29);
 		contentPane.add(lblNewLabel_1_3);
 		
-		JLabel lblResult = new JLabel("");
-		lblResult.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblResult.setFont(new Font("Sitka Small", Font.PLAIN, 15));
-		lblResult.setBounds(40, 291, 350, 67);
-		contentPane.add(lblResult);
+		
 		
 		
 		

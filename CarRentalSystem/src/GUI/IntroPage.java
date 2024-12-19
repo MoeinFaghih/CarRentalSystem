@@ -17,6 +17,8 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class IntroPage extends JFrame {
 
@@ -33,18 +35,7 @@ public class IntroPage extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					IntroPage frame = new IntroPage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
 
 	/**
 	 * Create the frame.
@@ -146,6 +137,40 @@ public class IntroPage extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		txtPass = new JPasswordField();
+		txtPass.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER)
+				{
+					if(txtId.getText().equals("") || txtPass.getText().equals(""))
+						lblResult.setText("All fields must be filled!");
+					else {
+						int id = Integer.parseInt(txtId.getText());
+						CarGallery galleryObj = CarGallerySys.getCarGalleryById(id);
+						if(galleryObj == null) {  //meaning no such id is existent in the data.
+							lblResult.setText("The entered ID or Password is incorrect");
+							clean();
+						}
+						else {
+							String pass = CarGallerySys.getPassword(id);
+							if(!pass.equals(txtPass.getText()) ){		//Wrong Password
+								lblResult.setText("The entered ID or Password is incorrect");
+								clean();
+							}
+							
+							else {
+								galF.setGalleryObj(galleryObj);
+								galF.fillInfo();
+								setVisible(false);
+								galF.setVisible(true);
+								galF.clear();
+								
+							}
+						}
+					}
+				}
+			}
+		});
 		txtPass.setBounds(246, 119, 163, 27);
 		contentPane.add(txtPass);
 		

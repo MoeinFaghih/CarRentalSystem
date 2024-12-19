@@ -275,26 +275,81 @@ public class AddFrame extends JFrame {
 		JButton btnNewButton_1 = new JButton("Add");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				boolean res;
-				if(rdbtnNewRadioButton.isSelected())
-					res = galleryObj.addCar("Combustion", txtBrand.getText(), Double.parseDouble(txtHorse.getText()), 
-							Integer.parseInt(txtYear.getText()), txtColor.getText(), Double.parseDouble(txtMile.getText()), txtPlate.getText(), 
-							Double.parseDouble(txtSpeed.getText()), 0.0, 0.0, false, 
-							0.0, Double.parseDouble(txtTankCapacity.getText()), Double.parseDouble(txtFuelTank.getText()), 
-							txtFuelType.getText(), Double.parseDouble(txtMilesPerTank.getText()));
-				else 
-					res = galleryObj.addCar("Electric", txtBrand.getText(), Double.parseDouble(txtHorse.getText()), 
-							Integer.parseInt(txtYear.getText()), txtColor.getText(), Double.parseDouble(txtMile.getText()), txtPlate.getText(), 
-							Double.parseDouble(txtSpeed.getText()), Double.parseDouble(txtBatteryPercentage.getText()), Double.parseDouble(txtMilePerBattery.getText()), 
-							chckbxFastCharge.isSelected(), Double.parseDouble(txtBatteryChargeTime.getText()), 0.0, 0.0, 
-							"", 0.0 );
+				boolean res=false;
+				boolean everythingFine=true;
+				boolean isCombSelected=rdbtnNewRadioButton.isSelected();
+				boolean isElecSelected=rdbtnNewRadioButton_1.isSelected();
 				
-				if(res) {
-					lblRes.setText("The car was added successfuly!");
-					clear();
+				if(!isCombSelected && !isElecSelected)
+				{
+					lblRes.setText("Select a type");
 				}
-				else
-					lblRes.setText("The entered lisence plate already exists!");
+				else {
+					if(isCombSelected)
+					{
+						if(txtBrand.getText().equalsIgnoreCase("")||
+								txtHorse.getText().equalsIgnoreCase("")||
+								txtYear.getText().equalsIgnoreCase("")||
+								txtColor.getText().equalsIgnoreCase("")||
+								txtMile.getText().equalsIgnoreCase("")||
+								txtPlate.getText().equalsIgnoreCase("")||
+								txtSpeed.getText().equalsIgnoreCase("")||
+								txtTankCapacity.getText().equalsIgnoreCase("")||
+								txtFuelTank.getText().equalsIgnoreCase("")||
+								txtFuelType.getText().equalsIgnoreCase("")||
+								txtMilesPerTank.getText().equalsIgnoreCase(""))
+						{
+							everythingFine=false;
+						}
+						else {
+							res = galleryObj.addCar("Combustion", txtBrand.getText(), Double.parseDouble(txtHorse.getText()), 
+									Integer.parseInt(txtYear.getText()), txtColor.getText(), Double.parseDouble(txtMile.getText()), txtPlate.getText(), 
+									Double.parseDouble(txtSpeed.getText()), 0.0, 0.0, false, 
+									0.0, Double.parseDouble(txtTankCapacity.getText()), Double.parseDouble(txtFuelTank.getText()), 
+									txtFuelType.getText(), Double.parseDouble(txtMilesPerTank.getText()));
+						}
+					}
+						
+					else 
+						if(txtBrand.getText().equalsIgnoreCase("")||
+								txtHorse.getText().equalsIgnoreCase("")||
+								txtYear.getText().equalsIgnoreCase("")||
+								txtColor.getText().equalsIgnoreCase("")||
+								txtMile.getText().equalsIgnoreCase("")||
+								txtPlate.getText().equalsIgnoreCase("")||
+								txtSpeed.getText().equalsIgnoreCase("")||
+								txtBatteryPercentage.getText().equalsIgnoreCase("")||
+								txtMilePerBattery.getText().equalsIgnoreCase("")||
+								chckbxFastCharge.isSelected()||
+								txtBatteryChargeTime.getText().equalsIgnoreCase(""))
+						{
+							everythingFine=false;
+							
+						}
+						else {
+							res = galleryObj.addCar("Electric", txtBrand.getText(), Double.parseDouble(txtHorse.getText()), 
+									Integer.parseInt(txtYear.getText()), txtColor.getText(), Double.parseDouble(txtMile.getText()), txtPlate.getText(), 
+									Double.parseDouble(txtSpeed.getText()), Double.parseDouble(txtBatteryPercentage.getText()), Double.parseDouble(txtMilePerBattery.getText()), 
+									chckbxFastCharge.isSelected(), Double.parseDouble(txtBatteryChargeTime.getText()), 0.0, 0.0, 
+									"", 0.0 );
+						}
+						
+					
+					if(everythingFine)
+					{
+						if(res) {
+							lblRes.setText("The car was added successfuly!");
+							clear();
+						}
+						else
+							lblRes.setText("The entered lisence plate already exists!");
+					}
+					else
+						lblRes.setText("Fill all the areas");
+					
+					
+				}
+				
 					
 				
 				
